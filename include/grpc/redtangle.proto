@@ -1,0 +1,86 @@
+syntax = "proto3"; 
+
+package redtangle_grpc; 
+
+service Redtangle {
+    rpc Connect(ConnectRequest) returns (ConnectResponse) {}; 
+    rpc Select(SelectRequest) returns (SelectResponse) {}; 
+    rpc Rotate(RotateRequest) returns (RotateResponse) {}; 
+    rpc EndTurn(EndTurnRequest) returns (EndTurnResponse) {}; 
+    rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {}; 
+    rpc Disconnect(DisconnectRequest) returns(DisconnectResponse) {}; 
+}
+
+enum Color {
+    WHITE = 0;
+    BLACK = 1;
+}
+
+message Piece {
+    Color team_color = 1;
+    repeated Color sides = 2;
+}
+
+message Status {
+    Color turn = 1;
+    string winner = 2; 
+    string opponent = 3; 
+    int32 white_pieces = 4;
+    int32 black_pieces = 5; 
+    repeated Piece board = 6; 
+}
+
+message ConnectRequest {
+    string user_name = 1; 
+}
+
+message ConnectResponse {
+    int32 game_id = 1; 
+    bool is_white = 2; 
+}
+
+message SelectRequest {
+  int32 game_id = 1;
+  string user_name = 2;
+  int32 x = 3;
+  int32 y = 4;   
+}
+
+message SelectResponse {
+    bool success = 1;
+}
+
+message RotateRequest {
+    int32 game_id = 1; 
+    string user_name = 2;
+    bool clockwise = 3; 
+}
+
+message RotateResponse {
+    bool success = 1;
+}
+
+message EndTurnRequest {
+    int32 game_id = 1;
+    string user_name = 2;
+}
+
+message EndTurnResponse {
+    bool success = 1;
+}
+
+message GetStatusRequest {
+    int32 game_id = 1;
+    string user_name = 2;
+}
+
+message GetStatusResponse {
+    Status game_status = 1;
+}
+
+message DisconnectRequest {
+    int32 game_id = 1; 
+    string user_name = 2; 
+}
+
+message DisconnectResponse {}
