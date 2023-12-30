@@ -1,3 +1,6 @@
+# Introduction
+Redtangle is originally a board game similar to chess and has been developed to be played as a desktop application. 
+
 # Redtangle Tutorial 
 
 ## Connecting to the gRPC Server
@@ -11,7 +14,8 @@ After connecting to the gRPC Server, the game ui will be displayed:
 
 ![image](./docs/game-ui.png)
 
-For directions on game rules or controls, click `Help->Game Directions` or `Help->Game Controls`
+## Finding Game Directions
+To view the game rules and controls, click `Help->Game Directions` or `Help->Game Controls`
 
    ![image](./docs/help-menu.png)
 
